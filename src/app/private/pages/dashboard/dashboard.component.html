@@ -1,0 +1,16 @@
+<div class="col" *ngIf="dataSource.data.length!=0">
+  <app-table-file
+    [dataSource]="dataSource"
+    (fileEvent)="donwloadFileUser($event)"
+    (recursoEvent)="removeFileData($event)">
+
+  </app-table-file>
+
+</div>
+
+<div class="col" *ngIf="dataSource.data.length === 0">
+  <app-table-file
+    [dataSource]="dataSource">
+  </app-table-file>
+
+</div>

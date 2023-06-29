@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-gradient-primary">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" style="margin-right: 15px;">
+          <img src="assets/img/Logo_SANTOTO_Principal_2022_b.png" alt="" width="150px">
+        </li>
+        <li class="ml-2 nav-item">
+          <span *ngIf="user">
+            <a class="nav-link text-white" routerLink="/dashboard/">Inicio</a>
+          </span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/dashboard/upload">Subir Documentos</a>
+        </li>
+        <li class="nav-item">
+          <span *ngIf="user.cod_rol === 2">
+            <a class="nav-link text-white" routerLink="/dashboard/add-academy-program">Programas</a>
+          </span>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{user.nombre_usuario}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="nav-item"><a (click)="logOut();" href="" class="dropdown-item">Cerrar Sesi&oacute;n</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard/">Lista documentos</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="" class="">&nbsp;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

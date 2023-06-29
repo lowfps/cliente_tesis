@@ -1,0 +1,25 @@
+<div class="text-center">
+  <h2 mat-dialog-title> Actualizar Programa </h2>
+  <div mat-dialog-content>
+    <form role="form" *ngIf="academyFormUpdate" [formGroup]="academyFormUpdate">
+      <div class="row g-2">
+        <div class="col-lg-12">
+          <div class="input-group input-group-outline mb-3">
+            <input type="text" class="form-control" formControlName="nombre_programa" name="nombre_programa">
+          </div>
+        </div>
+      </div>
+      <div class="row g-2">
+        <div class="text-center col-lg-12">
+          <mat-dialog-actions align="end">
+            <button class="btn btn-sm bg-gradient-primary" mat-dialog-close>Cancel</button>
+            <button class="btn btn-sm bg-gradient-primary" style="margin-left: 10px;" (click)="DeletePopup()">Actualizar</button>
+          </mat-dialog-actions>
+        </div>
+        <div class="mt-2">
+          <mat-progress-bar mode="indeterminate" *ngIf="loader"></mat-progress-bar>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="mat-elevation-z8 example-table-container">
+  <mat-form-field style="width:100%;">
+    <mat-label>Buscar...</mat-label>
+      <input matInput (keyup)="applySearch($event)" placeholder="Buscar..." #input>
+    </mat-form-field>
+  <div *ngIf="dataSource.data.length == 0" class="p-2 text-center">Este usuario no tiene documentos cargados</div>
+
+  <table mat-table matTableResponsive [dataSource]="dataSource">
+
+    <ng-container matColumnDef="nombrepublico_recurso">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombrepublico_recurso}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tamanno">
+      <th mat-header-cell *matHeaderCellDef> Tamaño </th>
+      <td mat-cell *matCellDef="let element"> {{element.tamanno}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo_recurso">
+      <th mat-header-cell *matHeaderCellDef> Tipo de recurso </th>
+      <td mat-cell *matCellDef="let element"> {{element.tipo_recurso | typeResource }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado del Documento </th>
+      <td mat-cell *matCellDef="let element"> {{element.estado | status }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date_time">
+      <th mat-header-cell *matHeaderCellDef> Fecha de carga </th>
+      <td mat-cell *matCellDef="let element"> {{element.date_time | date:'short' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cod_programa">
+      <th mat-header-cell *matHeaderCellDef> Programa Acad&eacute;mico </th>
+      <td mat-cell *matCellDef="let element"> {{ element.nombre_programa }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="desc_recurso">
+      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.desc_recurso.length >= 20; else notTooLong">{{element.desc_recurso | slice:0:20}}...</span>
+        <ng-template #notTooLong>{{ element.desc_recurso }}</ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="cursor-pointer btn-donwload" (click)="donwloadFile(element.nombreprivado_recurso)" ><a title="Descargar" style="color:green">download</a></mat-icon>
+        <mat-icon class="cursor-pointer btn-remove" (click)="removeData( element )"><a title="Eliminar" style="color:red">deleted</a></mat-icon>
+        <mat-icon class="cursor-pointer btn-edit"><a title="Modificar documento" style="color:blue" [routerLink]="['/dashboard/edit', element.cod_recurso]">edit</a></mat-icon>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

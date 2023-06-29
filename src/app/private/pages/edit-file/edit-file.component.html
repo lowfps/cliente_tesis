@@ -1,0 +1,65 @@
+<form role="form" *ngIf="uploadForm" [formGroup]="uploadForm" (ngSubmit)="updateRegister()">
+
+  <div class="row g-2">
+
+    <div class="col-md">
+      <label class="form-label">Nombre publico</label>
+      <div class="input-group input-group-outline mb-3">
+        <input type="text" class="form-control" formControlName="nombrepublico_recurso">
+      </div>
+      <div class="mb-3">
+        <span *ngIf="fieldNotValid('nombrepublico_recurso')" class="text-danger">
+          Completa este campo
+        </span>
+      </div>
+      <label class="form-label">Comentarios</label>
+      <div class="input-group input-group-outline mb-3">
+        <textarea #desc_recurso class="form-control" formControlName="desc_recurso" rows="10" (keyup)="hasSpaceTextArea(desc_recurso.value)"></textarea>
+      </div>
+      <div class="mb-3">
+        <span *ngIf="fieldNotValid('desc_recurso')" class="text-danger">
+          Completa este campo
+        </span>
+      </div>
+      <div class="mb-3">
+        <span *ngIf="textArea == false" class="text-danger">
+          Ingresar un texto valido
+        </span>
+      </div>
+    </div>
+    <div class="col-md">
+      <label class="form-label">Cargar Documento</label>
+      <div class="input-group input-group-outline mb-3">
+        <input type="file" name="file" class="form-control" (change)="onselectFile($event)">
+      </div>
+      <div class="mb-3">
+        <span *ngIf="fieldNotValid('nombreprivado_recurso')" class="text-danger">
+          Completa este campo
+        </span>
+      </div>
+      <label class="form-label">Estado del documento</label>
+      <div class="input-group input-group-outline mb-3">
+        <select class="form-control" formControlName="estado" id="">
+          <option value="" selected>Seleccione una opci&oacute;n</option>
+          <option value=1>Activo</option>
+          <option value=2>Primera Solicitud</option>
+          <option value=3>En proceso</option>
+          <option value=4>Renovación</option>
+          <option value=5>Pendiente renovación</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <span *ngIf="fieldNotValid('estado')" class="text-danger">
+          Completa este campo
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="text-center col-md-6">
+    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" [disabled]="clicked" clicked = true;>Enviar</button>
+      <div class="mt-2 ">
+        <mat-progress-bar mode="indeterminate" *ngIf="loader"></mat-progress-bar>
+
+      </div>
+  </div>
+</form>

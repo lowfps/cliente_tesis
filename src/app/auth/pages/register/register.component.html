@@ -1,0 +1,58 @@
+<div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+  <span class="mask bg-gradient-dark opacity-6"></span>
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-4 col-md-8 col-12 mx-auto">
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+              <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Por favor llenar los campos para registro</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <form role="form" [formGroup]="registerForm" *ngIf="registerForm" autocomplete="off" (ngSubmit)="sendRegister()">
+              <label class="form-label">Usuario</label>
+              <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" formControlName="nombre_usuario" name="nombre_usuario">
+              </div>
+              <div class="mb-3">
+                <span *ngIf="fieldNotValid('nombre_usuario')" class="text-danger">
+                  Completa este campo
+                </span>
+              </div>
+              <label class="form-label">Correo Electr&oacute;nico</label>
+              <div class="input-group input-group-outline mb-3">
+                <input type="email" class="form-control" formControlName="correo_usuario" name="correo_usuario">
+              </div>
+              <div class="mb-3">
+                <span *ngIf="fieldNotValid('correo_usuario')" class="text-danger">
+                  Completa este campo
+                </span>
+              </div>
+              <label class="form-label">Contraseña</label>
+              <div class="input-group input-group-outline mb-3">
+                <input type="password" class="form-control" formControlName="clave_usuario" name="clave_usuario">
+              </div>
+              <div class="mb-3">
+                <span *ngIf="fieldNotValid('clave_usuario')" class="text-danger">
+                  Completa este campo
+                </span>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" [disabled]="clicked" clicked = true;>Enviar</button>
+              </div>
+              <div class="mt-2">
+                <mat-progress-bar mode="indeterminate" *ngIf="loader"></mat-progress-bar>
+
+              </div>
+              <p class="mt-4 text-sm text-center">
+                Ya est&aacute;s registrado?
+                <a routerLink="/" class="text-primary text-gradient font-weight-bold">Accede a nuestra plataforma !!</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
